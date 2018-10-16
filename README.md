@@ -25,19 +25,19 @@ usage:
   * Use the EVOK rpi image from Unipi
   * Copy of pull all files to a directory on it (eg /root/evok2mqtt)
   * Install the dependencies:
-    # pip install websocket-client
-    # pip install paho-mqtt
+    $ pip install websocket-client
+    $ pip install paho-mqtt
   * edit the evok2mqtt.py file to suit your needs (ip addresses in last section)
   * enable systemd service:
-    # systemctl enable /path/to/evok2mqtt.service
+    $ systemctl enable /path/to/evok2mqtt.service
   * edit evok2HAconfig.py file to suit your needs (ip addresses, passwords, enable/disable device types, ...)
   * Test the HA config:
-    # python2 /path/to/evok2HAconfig.py
+    $ python2 /path/to/evok2HAconfig.py
   * Create HA package for EVOK:
-    # mkdir /path/to/HA/confdir/packages
-    # python2 /path/to/evok2HAconfig.py > /path/to/HA/confdir/packages/evok.yaml (careful, this will overwrite without warning !!)
+    $ mkdir /path/to/HA/confdir/packages
+    $ python2 /path/to/evok2HAconfig.py > /path/to/HA/confdir/packages/evok.yaml (careful, this will overwrite without warning !!)
   * Restart Home Assistant from the webinterface or from command line. In case of a docker instance:
-    # docker restart homeassistant
+    $ docker restart homeassistant
 
 That's it for now.
 
