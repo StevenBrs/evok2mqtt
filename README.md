@@ -48,5 +48,6 @@ usage:
 
 That's it for now.
 
-Please note: I'm a sysadmin and I know my way around PHP and Delphi, but I'm not a programmer and I'm new to Python.
+Please note: Use this software at your own risk !  I do not take responsability in any way.
+I'm a sysadmin and I know my way around PHP and Delphi, but I'm not a programmer and I'm new to Python.
 Feel free to correct my code, to explain my mistakes, and to make me smarter :-)
