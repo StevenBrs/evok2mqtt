@@ -2,11 +2,12 @@
 Read EVOK Websocket messages and send them to MQTT daemon
 
 
-I had a hard time connecting my Home Assistant to my Unipi Neuron + extension using modbus, and performance was not acceptable.
-I decided to give EVOK a try, but noticed that websockets were not usable from Home Assistant.
-REST calls did work for commands, but didn't reflect state changes from other sources.
+I had a hard time using my Unipi Neuron M203 + xS10 extension with Home Assistant, and performance was not acceptable.
+I decided to give the EVOK API a try, but noticed that websockets were not usable from Home Assistant and polling the REST interface was too slow to detect push-button switches.
 
 So I wrote my first Python program to act as a layer between EVOK Websockets and MQTT.
+Goal is to use the official EVOK RPi image with as few modifications as possible, to connect to another RPi running Home Assistant and various other software.
+For now I don't have any RPI's, so everything is running on the Neuron itself.
 
 As always I try to create my programs as dynamically as possible, so I created 2 files:
 * evok2mqtt: translates everything received from Websockets to Modbus.  For now the topics are 'neuron/devtype/identifier'
