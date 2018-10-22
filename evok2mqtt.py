@@ -81,4 +81,7 @@ if __name__ == "__main__":
     ws.run_forever()
   except KeyboardInterrupt:
     print "Ctrl-C"
+  finally:
+#    ws.close()
+    mc.disconnect()
 

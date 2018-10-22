@@ -1,12 +1,16 @@
 [Unit]
 Description=EVOK to MQTT Daemon
 After=evok.service
+Requires=evok.service
+#PartOf=evok.service
+BindsTo=evok.service
 
 [Service]
 Type=idle
+ExecStartPre=-/bin/sleep 3
 ExecStart=/usr/bin/python /root/evok2mqtt/evok2mqtt.py > /var/log/evok2mqtt.log 2>&1
 Restart=on-failure
-RestartSec=10
+RestartSec=5
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=evok2mqtt
