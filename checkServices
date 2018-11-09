@@ -1,0 +1,12 @@
+#!/bin/bash
+
+services="neurontcp evok evok2mqtt"
+d=$(date)
+
+for service in $services; do
+	systemctl status $service | grep Active | grep dead
+	if [ $? -eq 0 ]; then
+		echo $d - EVOK CHECK SCRIPT : restart $service
+		systemctl restart $service
+	fi
+done

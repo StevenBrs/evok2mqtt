@@ -8,7 +8,7 @@ BindsTo=evok.service
 [Service]
 Type=idle
 ExecStartPre=-/bin/sleep 3
-ExecStart=/usr/bin/python /root/evok2mqtt/evok2mqtt.py > /var/log/evok2mqtt.log 2>&1
+ExecStart=/usr/bin/python /root/evok2mqtt/evok2mqtt.py
 Restart=on-failure
 RestartSec=5
 StandardOutput=syslog
