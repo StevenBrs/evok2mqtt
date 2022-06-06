@@ -3,6 +3,7 @@ import requests
 import paho.mqtt.client as mqtt
 import time
 
+
 evokhost = 'http://192.168.0.20:88'
 mqtthost = '192.168.0.21'
 
@@ -19,35 +20,35 @@ def publish_dev_config():
   rest_all = requests.get(evokhost + '/rest/all')
   rest_all_devs = json.loads(rest_all.content.decode('utf-8'))
 
-  mc = mqtt.Client(client_id="evok2mqtt", clean_session=False)
+  mc = mqtt.Client(client_id="evok2", clean_session=False)
   mc.connect(mqtthost)
+  mc.loop_start()
 
   for dev in rest_all_devs:
-    #if (ent['dev'] in ['input', 'relay', 'ai', 'ao', 'led']):
     if (dev['dev'] in devtypes):
       entity_id='evok2_' + dev['dev'] + '_' + dev['circuit']
-      topic='homeassistant/' + devtypes[dev['dev']] + '/' + entity_id
+      topic='homeassistant/' + devtypes[dev['dev']] + '/neuron-m203/' + entity_id
+
       payload = {
         'unique_id':entity_id,
         'name':entity_id,
+        'state_topic':topic + '/state',
         'command_topic':topic + '/set',
-        'state_topic':topic,
       }
       if (dev['dev'] in configs):
-        print(payload)
-        print(configs[dev['dev']])
-        #payload = payload | configs[dev['dev']]
         payload = dict(list(payload.items()) + list(configs[dev['dev']].items()))
 
-      print(payload)
-      mc.publish(topic + '/config', payload=json.dumps(payload),retain=True)
-      mc.publish(topic, payload=dev['value'])
-      time.sleep(.01)
+      mc_result = mc.publish(topic + '/config', payload=json.dumps(payload), qos=1, retain=True)
+      mc.publish(topic + '/state', payload=dev['value'], retain=False)
 
+  mc.loop_stop()
   mc.disconnect
 
 
+
+
 publish_dev_config()
+
 
 
 
