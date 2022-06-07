@@ -1,4 +1,17 @@
 # evok2mqtt
+
+
+
+EVOK2MQTT IS CURRENTLY UNDER DEVELOPMENT. SADLY I FORGOT TO CREATE A NEW BRANCH SO DESCRIPTION ISN'T CORRECT ANYMORE.
+PLEASE CHECK BACK LATER FOR A FINISHED PRODUCT
+(Although the script here already works)
+
+
+
+=======================================================
+
+
+
 Read EVOK Websocket messages and send them to MQTT daemon
 
 
